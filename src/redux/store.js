@@ -1,6 +1,6 @@
-import profileReducer from './profile-reducer';
-import dialogsReducer from './dialogs-reducer';
-import sidebarReducer from './sidebar-reducer';
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
 
 let store = {
   _state: {
@@ -53,7 +53,6 @@ let store = {
   // в зависимости от типа
   // выполняет разные функции в store
   dispatch(action) {
-    
     // передача экшена и нужной части стейта в редьюсер
     // редьюсер обрабатывает и возвращает новый стейт
     this._state.profilePage = profileReducer(this._state.profilePage, action);
@@ -61,11 +60,8 @@ let store = {
     this._state.sidebar = sidebarReducer(this._state.sidebar, action);
 
     this._callSubscriber(this._state);
-
   },
 };
 
 export default store;
 window.store = store;
-
-// store - OOP
