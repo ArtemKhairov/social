@@ -37,6 +37,8 @@
 
 
 ### Что будет дальше?
-- ContextApi
 - sideEffect
+- REST Api
 - Жизненный циклы
+- cookie
+- login
