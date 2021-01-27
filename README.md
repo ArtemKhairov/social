@@ -28,17 +28,15 @@
 ### На каком этапе ты сейчас находишься?
 
 На данный момент сделано:
-- Основные компоненты разметки (Header,Navbar,Messages,Dialogs)
+- Основные компоненты разметки (Header,Navbar,Messages,Dialogs,Users)
 - Минимальное оформление (в каждый компонент добавлен module.css)
 - Введен Redux 
 - Добавлены reducer(ы), action.type, actionCreator(ы)
 - Компоненты были разделены на презентационные и контейнерные
-- Добавлен react-redux
+- Добавлен react-redux, axios
 
 
 ### Что будет дальше?
-- sideEffect
-- REST Api
-- Жизненный циклы
+- Классовый компонент
 - cookie
 - login
