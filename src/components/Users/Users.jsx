@@ -1,22 +1,36 @@
 import React from "react";
-import styles from "./Users.module.css";
-import * as axios from "axios";
+import styles from "./users.module.css";
 import userPhoto from "../../assets/images/user.png";
 
-let Users = (props) => {
-  let getUsers = () => {
-    if (props.users.length === 0) {
-      axios
-        .get("https://social-network.samuraijs.com/api/1.0/users")
-        .then((response) => {
-          props.setUsers(response.data.items);
-        });
-    }
-  };
-
+const Users = (props) => {
+  // let pagesCount = Math.ceil(
+  //   this.props.totalUsersCount / this.props.pageSize
+  // );
+  let pagesCount = 10;
+  let pages = [];
+  for (let i = 1; i <= pagesCount; i++) {
+    pages.push(i);
+  }
   return (
     <div>
-      <button onClick={getUsers}>Get Users</button>
+      <div className={styles.divback}>
+        {pages.map((p) => {
+          return (
+            <span
+              key={p}
+              // className={this.props.currentPage ===  p && styles.selectedPage }
+              className={
+                props.currentPage === p ? styles.selectedPage : "nothing"
+              }
+              onClick={(e) => {
+                props.onPageChanged(p);
+              }}
+            >
+              {p}
+            </span>
+          );
+        })}
+      </div>
       {props.users.map((u) => (
         <div key={u.id}>
           <span>
@@ -30,7 +44,7 @@ let Users = (props) => {
               {u.followed ? (
                 <button
                   onClick={() => {
-                    props.unfollow(u.id);
+                    this.props.unfollow(u.id);
                   }}
                 >
                   Unfollow
@@ -38,7 +52,7 @@ let Users = (props) => {
               ) : (
                 <button
                   onClick={() => {
-                    props.follow(u.id);
+                    this.props.follow(u.id);
                   }}
                 >
                   Follow
@@ -52,7 +66,7 @@ let Users = (props) => {
               <div>{u.status}</div>
             </span>
             <span>
-              <div>{"u.location.country"}</div>
+              <div className={styles.divv}>{"u.location.country"}</div>
               <div>{"u.location.city"}</div>
             </span>
           </span>
