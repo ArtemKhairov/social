@@ -36,9 +36,13 @@
 - Добавлен react-redux, axios
 - Создана классовая компонента (Users)
 - Добавлена пагинация компоненты Users
+- Добавлен Redux-Thunk
+- Созданы axios instance
+
 
 
 ### Что будет дальше?
-- Классовый компонент и жизненный цикл
-- cookie
-- login
+- redux-form
+- reselect
+- hoc
+- login / logout api

@@ -1,7 +1,9 @@
 import React from "react";
 import styles from "./users.module.css";
 import userPhoto from "../../assets/images/user.png";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import * as axios from "axios";
+import { usersAPI } from "../api/api";
 
 const Users = (props) => {
   // let pagesCount = Math.ceil(
@@ -19,7 +21,6 @@ const Users = (props) => {
           return (
             <span
               key={p}
-              // className={this.props.currentPage ===  p && styles.selectedPage }
               className={
                 props.currentPage === p ? styles.selectedPage : "nothing"
               }
@@ -45,17 +46,17 @@ const Users = (props) => {
             </div>
             <div>
               {u.followed ? (
-                <button
+                <button disabled={props.followingInProgress.some(id => id === u.id)}
                   onClick={() => {
-                    props.unfollow(u.id);
+                    props.unfollow(u.id)
                   }}
                 >
                   Unfollow
                 </button>
               ) : (
-                <button
+                <button disabled={props.followingInProgress.some(id => id === u.id)}
                   onClick={() => {
-                    props.follow(u.id);
+                    props.follow(u.id)
                   }}
                 >
                   Follow
