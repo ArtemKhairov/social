@@ -27,9 +27,9 @@ export const usersAPI = {
   },
 };
 
-
+// проверка авторизации на сайте
 export const authAPI = {
   me() {
     return instance.get(`auth/me`);
-  }
-}
+  },
+};

@@ -38,11 +38,12 @@
 - Добавлена пагинация компоненты Users
 - Добавлен Redux-Thunk
 - Созданы axios instance
+- Добавлен compose "redux"
+- hoc Redirect
 
 
 
 ### Что будет дальше?
 - redux-form
 - reselect
-- hoc
 - login / logout api
