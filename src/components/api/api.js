@@ -28,6 +28,19 @@ export const usersAPI = {
   },
 };
 
+
+export const profileAPI = {
+  getProfile(userId) {
+    return instance.get(`profile/` + userId);
+  },
+  getStatus(userId) {
+    return instance.get(`profile/status/` + userId);
+  },
+  updateStatus(status) {
+    return instance.put(`profile/status`, { status: status });
+  },
+};
+
 // проверка авторизации на сайте
 export const authAPI = {
   me() {
@@ -38,17 +51,5 @@ export const authAPI = {
   },
   logout() {
     return instance.delete(`auth//login`);
-  },
-};
-
-export const profileAPI = {
-  getProfile(userId) {
-    return instance.get(`profile/${userId}`);
-  },
-  getStatus(userId) {
-    return instance.get(`profile/status/${userId}`);
-  },
-  updateStatus(status) {
-    return instance.put(`profile/status`, { status: status });
   },
 };

@@ -1,4 +1,5 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
+import appReducer from "./app-reducer";
 import authReducer from "./auth-reducer";
 import thunkMiddleware from "redux-thunk";
 import usersReducer from "./users-reducer";
@@ -15,6 +16,7 @@ let reducers = combineReducers({
   usersPage: usersReducer,
   auth: authReducer,
   form: formReducer,
+  app: appReducer,
 });
 
 // создание хранилища Redux

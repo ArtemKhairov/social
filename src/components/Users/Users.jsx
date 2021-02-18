@@ -1,9 +1,10 @@
 import React from "react";
-import styles from "./users.module.css";
+import style from "./users.module.css";
 import userPhoto from "../../assets/images/user.png";
 import { NavLink } from "react-router-dom";
 
 const Users = (props) => {
+  console.log(props)
   // let pagesCount = Math.ceil(
   //   this.props.totalUsersCount / this.props.pageSize
   // );
@@ -14,13 +15,13 @@ const Users = (props) => {
   }
   return (
     <div>
-      <div className={styles.divback}>
+      <div className={style.divback}>
         {pages.map((p) => {
           return (
             <span
               key={p}
               className={
-                props.currentPage === p ? styles.selectedPage : "nothing"
+                props.currentPage === p ? style.selectedPage : "nothing"
               }
               onClick={(e) => {
                 props.onPageChanged(p);
@@ -38,7 +39,7 @@ const Users = (props) => {
               <NavLink to={"/profile/" + u.id}>
                 <img
                   src={u.photos.small != null ? u.photos.small : userPhoto}
-                  className={styles.userPhoto}
+                  className={style.userPhoto}
                 />
               </NavLink>
             </div>
@@ -68,7 +69,7 @@ const Users = (props) => {
               <div>{u.status}</div>
             </span>
             <span>
-              <div className={styles.divv}>{"u.location.country"}</div>
+              <div className={style.divv}>{"u.location.country"}</div>
               <div>{"u.location.city"}</div>
             </span>
           </span>

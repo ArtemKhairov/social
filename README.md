@@ -40,10 +40,16 @@
 - Созданы axios instance
 - Добавлен compose "redux"
 - hoc Redirect
+- Добавлено redux-form
+- Добавлены хуки useState , useEffect
+- Селекторы (reselect)
+- Добавлена инициализация 
 
 
 
 ### Что будет дальше?
-- redux-form
-- reselect
-- login / logout api
+- memo
+- PureComponent
+- tdd
+- redux-ducks 
+- React.lazy
