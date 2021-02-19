@@ -44,12 +44,11 @@
 - Добавлены хуки useState , useEffect
 - Селекторы (reselect)
 - Добавлена инициализация 
+- Добавлен test для profile-reducer
+- Применен TDD
 
 
 
 ### Что будет дальше?
-- memo
-- PureComponent
-- tdd
 - redux-ducks 
 - React.lazy

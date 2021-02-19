@@ -7,12 +7,12 @@ import { required,maxLengthCreator } from "../../../utils/validators/validator";
 
 const maxLength10 = maxLengthCreator(10);
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
   let postsElements = props.posts.map((p) => (
     <Post message={p.message} likesCount={p.likesCount} />
   ));
 
-  let newPostElement = React.createRef();
+  // let newPostElement = React.createRef();
 
   let onAddPost = (values) => {
     // props.addPost();
@@ -26,7 +26,7 @@ const MyPosts = (props) => {
       <div className={s.posts}>{postsElements}</div>
     </div>
   );
-};
+});
 
 let AddPostForm = (props) => {
   return (
