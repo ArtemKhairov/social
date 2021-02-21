@@ -3,11 +3,14 @@ import User from "./User";
 import Paginator from "../common/Paginator/Paginator";
 
 const Users = (props) => {
+  console.log(props)
   return (
     <div>
       <Paginator
         currentPage={props.currentPage}
         onPageChanged={props.onPageChanged}
+        totalItemsCount={props.totalUsersCount}
+        pageSize={props.pageSize}
       />
       {props.users.map((u) => (
         <User
