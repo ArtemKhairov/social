@@ -16,7 +16,7 @@ let rootReducer = combineReducers({
   usersPage: usersReducer,
   auth: authReducer,
   form: formReducer,
-  app: appReducer,
+  app: appReducer,  
 });
 
 type RootReducerType = typeof rootReducer;
