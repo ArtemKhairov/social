@@ -9,7 +9,7 @@ import dialogsReducer from "./dialogs-reducer";
 import { reducer as formReducer } from "redux-form";
 
 // передача редюсеров
-let reducers = combineReducers({
+let rootReducer = combineReducers({
   profilePage: profileReducer,
   dialogsPage: dialogsReducer,
   sidebar: sidebarReducer,
@@ -19,9 +19,14 @@ let reducers = combineReducers({
   app: appReducer,
 });
 
-// создание хранилища Redux
-let store = createStore(reducers, applyMiddleware(thunkMiddleware));
+type RootReducerType = typeof rootReducer;
 
+export type AppStateType = ReturnType<RootReducerType>
+
+// создание хранилища Redux
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+
+//@ts-ignore
 window.store = store;
 
 export default store;
