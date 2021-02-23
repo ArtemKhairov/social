@@ -15,8 +15,8 @@ const MyPosts = React.memo((props) => {
   // let newPostElement = React.createRef();
 
   let onAddPost = (values) => {
-    // props.addPost();
-    console.log(values);
+    props.addPost(values.newPostText);
+    // console.log(values);
   };
 
   return (

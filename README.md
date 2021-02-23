@@ -14,6 +14,7 @@
 - React
 - Redux
 - Node.js
+- TypeScript
 
 ### В чем смысл этой работы?
 
@@ -46,9 +47,12 @@
 - Добавлена инициализация 
 - Добавлен test для profile-reducer
 - Применен TDD
+- Добавлен TypeScript 
 
 
 
 ### Что будет дальше?
-- redux-ducks 
-- React.lazy
+- TypeScript (компоненты,Thunk,ActionsCreators,Jest,Unit test)
+- Hooks
+- Formik
+- Antd

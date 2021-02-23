@@ -45,7 +45,7 @@ class App extends Component {
         <Navbar />
         <div className="app-wrapper-content">
           <Switch>
-            <Route exact path="/" render={<Redirect to={"/profile"} />} />
+            <Route exact path="/" render={()=><Redirect to={"/profile"} />} />
             <Route path="/dialogs" render={withSuspense(DialogsContainer)} />
 
             <Route
@@ -57,7 +57,7 @@ class App extends Component {
 
             <Route path="/login" render={() => <Login />} />
 
-            <Route path="*" render={<div>404 Page Not found</div>} />
+            <Route path="*" render={()=><div>404 Page Not found</div>} />
           </Switch>
         </div>
       </div>
