@@ -1,4 +1,5 @@
-import * as axios from "axios";
+import axios from "axios";
+import { ProfileType } from "../../types/types";
 
 const instance = axios.create({
   withCredentials: true,
@@ -16,29 +17,29 @@ export const usersAPI = {
         return response.data;
       });
   },
-  follow(userId) {
+  follow(userId:number) {
     return instance.post(`follow/${userId}`);
   },
-  unfollow(userId) {
+  unfollow(userId:number) {
     return instance.delete(`follow/${userId}`);
   },
-  getProfile(userId) {
+  getProfile(userId:number) {
     console.warn("Obsolete method. Please use profileAPI.getProfile()");
     return profileAPI.getProfile(userId);
   },
 };
 
 export const profileAPI = {
-  getProfile(userId) {
+  getProfile(userId:number) {
     return instance.get(`profile/` + userId);
   },
-  getStatus(userId) {
+  getStatus(userId:number) {
     return instance.get(`profile/status/` + userId);
   },
-  updateStatus(status) {
+  updateStatus(status:string) {
     return instance.put(`profile/status`, { status: status });
   },
-  savePhoto(photoFile) {
+  savePhoto(photoFile:any) {
     const formData = new FormData();
     formData.append("image", photoFile);
 
@@ -48,18 +49,46 @@ export const profileAPI = {
       },
     });
   },
-  saveProfile(profile) {
+  saveProfile(profile:ProfileType) {
     return instance.put(`profile`, profile);
   },
 };
 
+export enum ResultCodeEnum{
+  Success = 0,
+  Error = 1,
+}
+
+export enum ResultCodeForCaptcha{
+  CaptchaIsRequired = 10,
+}
+
+type MeResponseType = {
+  data: {
+    id: number,
+    email: string,
+    login:string,
+  },
+  resultCode: ResultCodeEnum,
+  messages:Array<string>
+}
+
+type LoginResponseType = {
+  data: {
+    userId:number,
+  },
+  resultCode: ResultCodeForCaptcha | ResultCodeEnum,
+  messages:Array<string>
+}
+
 // проверка авторизации на сайте
 export const authAPI = {
   me() {
-    return instance.get(`auth/me`);
+    return instance.get<MeResponseType>(`auth/me`).then(res => res.data);
   },
-  login(email, password, rememberMe = false,captcha=null) {
-    return instance.post(`auth/login`, { email, password, rememberMe,captcha });
+  login(email:string, password:string, rememberMe:boolean = false,captcha:null|string=null) {
+    return instance.post<LoginResponseType>(`auth/login`, { email, password, rememberMe, captcha })
+      .then(res=>res.data);
   },
   logout() {
     return instance.delete(`auth//login`);
