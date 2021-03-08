@@ -31,12 +31,14 @@ class ProfileContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.match.params.userId !== this.props.match.params.userId) {
+    console.log("componentDidUpdate")
+    if (this.props.match.params.userId != prevProps.match.params.userId ) {
       this.refreshProfile()
     }
   }
 
   render() {
+    {console.log(this.props.match.params.userId)}
     return (
       <Profile
         {...this.props}

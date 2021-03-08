@@ -1,5 +1,5 @@
 import { stopSubmit } from "redux-form";
-import { profileAPI, usersAPI } from "../components/api/api";
+import { profileAPI, usersAPI } from "../api/api";
 import { ProfileType, PostType, PhotosType } from "../types/types";
 
 const ADD_POST = "ADD-POST";
@@ -47,13 +47,6 @@ const profileReducer = (
         posts: state.posts.filter((p) => p.id !== action.postId),
       };
     }
-
-    // case UPDATE_NEW_POST_TEXT: {
-    //   return {
-    //     ...state,
-    //     newPostText: action.newText,
-    //   };
-    // }
 
     case SET_USER_PROFILE: {
       return {
@@ -124,7 +117,7 @@ export const setUserProfile = (
 ): SetUserProfileActionCreatorType => {
   return {
     type: SET_USER_PROFILE,
-    profile: profile,
+    profile,
   };
 };
 
@@ -156,7 +149,7 @@ export const savePhotoSuccess = (
 
 // thunk
 export const getUserProfile = (userId: number) => async (dispatch: any) => {
-  let response = await usersAPI.getProfile(userId);
+  const response = await usersAPI.getProfile(userId);
   // console.log(response);
   dispatch(setUserProfile(response.data));
 };

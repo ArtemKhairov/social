@@ -9,7 +9,7 @@ import { initializeApp } from "./redux/app-reducer";
 import { Route, withRouter, Switch, Redirect } from "react-router-dom";
 import Preloader from "./components/common/Preloader/Preloader";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
+// import ProfileContainer from "./components/Profile/ProfileContainer";
 
 const UsersContainer = React.lazy(() =>
   import("./components/Users/UsersContainer")
@@ -17,6 +17,9 @@ const UsersContainer = React.lazy(() =>
 const DialogsContainer = React.lazy(() =>
   import("./components/Dialogs/DialogsContainer")
 );
+const ProfileContainer = React.lazy(() =>
+  import("./components/Profile/ProfileContainer")
+)
 
 class App extends Component {
   catchAllUnhandledErrors = (reason, promise) => {
@@ -50,7 +53,7 @@ class App extends Component {
 
             <Route
               path="/profile/:userId?"
-              render={() => <ProfileContainer />}
+              render={withSuspense(ProfileContainer)}
             />
 
             <Route path="/users" render={withSuspense(UsersContainer)} />

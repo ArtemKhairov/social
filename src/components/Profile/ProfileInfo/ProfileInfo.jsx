@@ -61,7 +61,7 @@ const ProfileInfo = (props) => {
 };
 
 const ProfileData = (props) => {
-  console.log(props);
+  // console.log(props);
   return (
     <div>
       {props.isOwner && <div><button onClick={props.goToEditMode}>edit</button></div>}
