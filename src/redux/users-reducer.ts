@@ -1,9 +1,10 @@
 import { Dispatch } from "react";
-import { ThunkAction } from "redux-thunk";
-import { ResultCodeEnum, usersAPI } from "../api/api";
 import { UserType } from "../types/types";
+import { ThunkAction } from "redux-thunk";
+import { ResultCodeEnum } from "../api/api";
+import { usersAPI } from "../api/users-api";
 import { updateObjectInArray } from "../utils/objectHelper";
-import {AppStateType, InferActionsTypes} from './redux-store';
+import { AppStateType, InferActionsTypes } from "./redux-store";
 
 // const FOLLOW = "FOLLOW";
 // const UNFOLLOW = "UNFOLLOW";
@@ -83,20 +84,21 @@ const usersReducer = (
   }
 };
 
-
 export const actions = {
-  followSuccess: (userId: number) => ({ type: "FOLLOW", userId, } as const),
-  unfollowSuccess: (userId: number) => ({ type: "UNFOLLOW", userId, } as const),
-  setUsers: (users: Array<UserType>) => ({ type: "SET_USERS", users, } as const),
-  setCurrentPage: (currentPage: number) => ({ type: "SET_CURRENT_PAGE", currentPage, } as const),
-  setTotalUsersCount: (totalUsersCount: number) => ({ type: "SET_TOTAL_USERS_COUNT", count:totalUsersCount } as const),
-  toggleIsFetching: (isFetching: boolean) => ({ type: "TOGGLE_IS_FETCHING", isFetching } as const),
-  toggleIsFollowingProgress:( isFetching: boolean,userId: number)=>({type:"TOGGLE_IS_FOLLOWING_PROGRESS",isFetching,userId,}as const)
-}
+  followSuccess: (userId: number) => ({ type: "FOLLOW", userId } as const),
+  unfollowSuccess: (userId: number) => ({ type: "UNFOLLOW", userId } as const),
+  setUsers: (users: Array<UserType>) => ({ type: "SET_USERS", users } as const),
+  setCurrentPage: (currentPage: number) =>
+    ({ type: "SET_CURRENT_PAGE", currentPage } as const),
+  setTotalUsersCount: (totalUsersCount: number) =>
+    ({ type: "SET_TOTAL_USERS_COUNT", count: totalUsersCount } as const),
+  toggleIsFetching: (isFetching: boolean) =>
+    ({ type: "TOGGLE_IS_FETCHING", isFetching } as const),
+  toggleIsFollowingProgress: (isFetching: boolean, userId: number) =>
+    ({ type: "TOGGLE_IS_FOLLOWING_PROGRESS", isFetching, userId } as const),
+};
 
-type ActionsTypes =InferActionsTypes<typeof actions>
-
-
+type ActionsTypes = InferActionsTypes<typeof actions>;
 
 // type GetStateType = () => AppStateType;
 type DispatchType = Dispatch<ActionsTypes>;
@@ -124,9 +126,7 @@ const followUnfollowFlow = async (
   dispatch: DispatchType,
   userId: number,
   apiMethod: any,
-  actionCreator: (
-    userId: number
-  ) => ActionsTypes
+  actionCreator: (userId: number) => ActionsTypes
 ) => {
   dispatch(actions.toggleIsFollowingProgress(true, userId));
   let response = await apiMethod(userId);

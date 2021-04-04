@@ -1,5 +1,6 @@
 import { stopSubmit } from "redux-form";
-import { profileAPI, usersAPI } from "../api/api";
+import { profileAPI } from "../api/profile-api";
+import { usersAPI } from "../api/users-api";
 import { ProfileType, PostType, PhotosType } from "../types/types";
 
 const ADD_POST = "ADD-POST";
@@ -149,7 +150,7 @@ export const savePhotoSuccess = (
 
 // thunk
 export const getUserProfile = (userId: number) => async (dispatch: any) => {
-  const response = await usersAPI.getProfile(userId);
+  const response = await profileAPI.getProfile(userId);
   // console.log(response);
   dispatch(setUserProfile(response.data));
 };
