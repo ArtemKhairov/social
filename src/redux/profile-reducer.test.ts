@@ -1,7 +1,4 @@
-import profileReducer, {
-  addPostActionCreator,
-  deletePost,
-} from "./profile-reducer";
+import profileReducer, {actions} from "./profile-reducer";
 
 let state = {
   posts: [
@@ -10,11 +7,14 @@ let state = {
     { id: 3, message: "Toyota", likesCount: 1010 },
     { id: 4, message: "BMW", likesCount: 200 },
   ],
+  profile: null,
+  status: '',
+  newPostText:''
 };
 
 it("length of posts should increment", () => {
   // тестируемое значение
-  let action = addPostActionCreator("JDM");
+  let action = actions.addPost("JDM");
 
   // действие
   let newState = profileReducer(state, action);
@@ -24,7 +24,7 @@ it("length of posts should increment", () => {
 });
 
 it("newPost message is correct", () => {
-  let action = addPostActionCreator("Camry 3.5");
+  let action = actions.addPost("Camry 3.5");
 
   let newState = profileReducer(state, action);
 
@@ -32,7 +32,7 @@ it("newPost message is correct", () => {
 });
 
 it("length of post should decrement", () => {
-  let action = deletePost(1);
+  let action = actions.deletePost(1);
 
   let newState = profileReducer(state, action);
 
@@ -40,7 +40,7 @@ it("length of post should decrement", () => {
 });
 
 it("length should be the same if Id is incorrect", () => {
-  let action = deletePost(1488);
+  let action = actions.deletePost(1488);
 
   let newState = profileReducer(state, action);
 

@@ -1,12 +1,12 @@
-import { combineReducers, createStore, applyMiddleware } from "redux";
+import { combineReducers, createStore, applyMiddleware, Action } from "redux";
 import appReducer from "./app-reducer";
 import authReducer from "./auth-reducer";
-import thunkMiddleware from "redux-thunk";
 import usersReducer from "./users-reducer";
 import profileReducer from "./profile-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import { reducer as formReducer } from "redux-form";
+import thunkMiddleware, { ThunkAction } from "redux-thunk";
 
 // передача редюсеров
 let rootReducer = combineReducers({
@@ -25,6 +25,9 @@ export type AppStateType = ReturnType<RootReducerType>
 type PropertiesTypes<T> = T extends {[key: string]: infer U} ? U : never
 export type InferActionsTypes<T extends {[key: string]: (...args: any[])=>any}> = ReturnType<PropertiesTypes<T>>
 
+// A-actionType
+// R-возвращаемое значение
+export type BaseThunkType<A extends Action=Action, R=Promise<void> > = ThunkAction<R , AppStateType, unknown, A >
 
 // создание хранилища Redux
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
